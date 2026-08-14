@@ -2,7 +2,7 @@ import { Command } from "commander";
 import { z } from "zod";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
-import { sendSlackMessage } from "sendkit-core";
+import { sendSlackMessage } from "@deeplab/sendkit-core";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 // Doesn't depend on anyone having an environment variable set for this, instead uses a

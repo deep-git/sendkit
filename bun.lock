@@ -18,43 +18,34 @@
       "dependencies": {
         "@clerk/backend": "^3.16.4",
         "@clerk/mcp-tools": "^0.6.0",
+        "@deeplab/sendkit-core": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.30.0",
         "hono": "^4.13.1",
-        "sendkit-core": "workspace:*",
-      },
-      "devDependencies": {
-        "@types/node": "^26.2.0",
       },
     },
     "packages/cli": {
-      "name": "sendkit",
+      "name": "@deeplab/sendkit",
       "version": "0.0.0",
       "dependencies": {
+        "@deeplab/sendkit-core": "workspace:*",
         "commander": "^15.0.0",
-        "sendkit-core": "workspace:*",
         "zod": "^4.4.3",
-      },
-      "devDependencies": {
-        "@types/node": "^26.2.0",
       },
     },
     "packages/core": {
-      "name": "sendkit-core",
+      "name": "@deeplab/sendkit-core",
       "version": "0.0.0",
       "dependencies": {
         "zod": "^4.4.3",
       },
     },
     "packages/local-mcp": {
-      "name": "sendkit-mcp",
+      "name": "@deeplab/sendkit-mcp",
       "version": "0.0.0",
       "dependencies": {
+        "@deeplab/sendkit-core": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.30.0",
-        "sendkit-core": "workspace:*",
         "zod": "^4.4.3",
-      },
-      "devDependencies": {
-        "@types/node": "^26.2.0",
       },
     },
   },
@@ -64,6 +55,12 @@
     "@clerk/mcp-tools": ["@clerk/mcp-tools@0.6.0", "", { "dependencies": { "@modelcontextprotocol/sdk": "^1.29.0" }, "peerDependencies": { "@clerk/express": "^2.1.5", "@clerk/hono": "^0.1.0", "@clerk/nextjs": "^7.2.3", "better-sqlite3": "^8.7.0", "express": "^5.0.0", "hono": "^4.0.0", "next": "^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0", "pg": "^8.11.0", "redis": "^4.0.0" }, "optionalPeers": ["@clerk/express", "@clerk/hono", "@clerk/nextjs", "better-sqlite3", "express", "hono", "next", "pg", "redis"] }, "sha512-YXGZujj6oxD5T4XOi08UsLbPiWYD88Fe1uOwqZQekak8i2vitOgugRw7guwat3GuzQearRGdsW1P5AweQ043Sg=="],
 
     "@clerk/shared": ["@clerk/shared@4.28.1", "", { "dependencies": { "@tanstack/query-core": "^5.100.6", "dequal": "2.0.3", "glob-to-regexp": "0.4.1", "js-cookie": "3.0.7" }, "peerDependencies": { "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-OhpUczN6t8CYJ+g8HdzN1O4SFC2EANOZRDwlE3rXxKu13eNtyFbLspt+d6Nhb/PmcThS/fIAKYnQQrwv0vIEwg=="],
+
+    "@deeplab/sendkit": ["@deeplab/sendkit@workspace:packages/cli"],
+
+    "@deeplab/sendkit-core": ["@deeplab/sendkit-core@workspace:packages/core"],
+
+    "@deeplab/sendkit-mcp": ["@deeplab/sendkit-mcp@workspace:packages/local-mcp"],
 
     "@hono/node-server": ["@hono/node-server@2.1.0", "", { "peerDependencies": { "hono": "^4" } }, "sha512-XovyyCCnBzW+zKu+z/zq8hwNs4KOR5rEMAOxo2f40Q5xoOI37IMm6MIg2COOUtUApo0i6850MTBKH2u4QLGIqg=="],
 
@@ -462,12 +459,6 @@
     "safer-buffer": ["safer-buffer@2.1.2", "", {}, "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="],
 
     "send": ["send@1.2.1", "", { "dependencies": { "debug": "^4.4.3", "encodeurl": "^2.0.0", "escape-html": "^1.0.3", "etag": "^1.8.1", "fresh": "^2.0.0", "http-errors": "^2.0.1", "mime-types": "^3.0.2", "ms": "^2.1.3", "on-finished": "^2.4.1", "range-parser": "^1.2.1", "statuses": "^2.0.2" } }, "sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ=="],
-
-    "sendkit": ["sendkit@workspace:packages/cli"],
-
-    "sendkit-core": ["sendkit-core@workspace:packages/core"],
-
-    "sendkit-mcp": ["sendkit-mcp@workspace:packages/local-mcp"],
 
     "sendkit-remote-mcp": ["sendkit-remote-mcp@workspace:apps/remote-mcp"],
 

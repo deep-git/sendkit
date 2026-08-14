@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { sendSlackMessage, slackMessageInputSchema } from "sendkit-core";
+import { sendSlackMessage, slackMessageInputSchema } from "@deeplab/sendkit-core";
 
 const server = new McpServer({
   name: "sendkit-local",

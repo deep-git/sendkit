@@ -1,14 +1,17 @@
 {
-  "name": "sendkit-mcp",
+  "name": "@deeplab/sendkit-mcp",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "build": "tsdown"
+  },
   "dependencies": {
+    "@deeplab/sendkit-core": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.30.0",
-    "sendkit-core": "workspace:*",
     "zod": "^4.4.3"
   }
 }
