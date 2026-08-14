@@ -16,7 +16,7 @@
   "dependencies": {
     "@clerk/backend": "^3.16.5",
     "@clerk/mcp-tools": "^0.6.0",
-    "@deeplab/sendkit-core": "workspace:*",
+    "@deeplab/sendkit-core": "0.0.3",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "hono": "^4.13.1"
   }
