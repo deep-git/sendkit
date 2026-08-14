@@ -9,7 +9,7 @@ export default defineConfig({
   platform: "node",
   target: "node20",
   outDir: "dist",
-  outExtensions: () => ({ js: "js", dts: ".d.ts" }),
+  outExtensions: () => ({ js: ".js", dts: ".d.ts" }),
   deps: {
     neverBundle: ["@deeplab/sendkit-core", "commander", "zod"],
   },

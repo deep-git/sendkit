@@ -1,6 +1,6 @@
 {
   "name": "@deeplab/sendkit",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "bin": {
     "sendkit": "./dist/index.js"
   },

@@ -25,7 +25,7 @@
     },
     "packages/cli": {
       "name": "@deeplab/sendkit",
-      "version": "0.0.0",
+      "version": "0.0.4",
       "dependencies": {
         "@deeplab/sendkit-core": "workspace:*",
         "commander": "^15.0.0",
@@ -34,14 +34,14 @@
     },
     "packages/core": {
       "name": "@deeplab/sendkit-core",
-      "version": "0.0.0",
+      "version": "0.0.2",
       "dependencies": {
         "zod": "^4.4.3",
       },
     },
     "packages/local-mcp": {
       "name": "@deeplab/sendkit-mcp",
-      "version": "0.0.0",
+      "version": "0.0.3",
       "dependencies": {
         "@deeplab/sendkit-core": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.30.0",
