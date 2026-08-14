@@ -15,24 +15,24 @@ export async function sendSlackMessage(input: SlackMessageOptions): Promise<Slac
     text: parsedInput.message,
   });
 
-  const response = await fetch(`https://slack.com/api/chat.postMessage`, {
+  const response = await fetch("https://slack.com/api/chat.postMessage", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${parsedInput.botToken}`,
-      "Content-Type": "application/json charset=utf-8",
+      "Content-Type": "application/json; charset=utf-8",
     },
-    body: await Response.json(requestBody).text(),
+    body: JSON.stringify(requestBody),
   });
 
   const data = slackSendMessageResponseSchema.parse(await response.json());
 
-  if (!response.ok || !data.ok || !data.result) {
-    throw new Error(data.description ?? "Slack message request failed");
+  if (!data.ok || !data.ts) {
+    throw new Error(data.error ? `Slack message request failed: ${data.error}` : "Slack message request failed");
   }
 
   return slackMessageOutputSchema.parse({
     ok: true,
-    channelId: parsedInput.channelId,
-    messageId: data.result.message_id,
+    channelId: data.channel ?? parsedInput.channelId,
+    messageId: data.ts,
   });
 }

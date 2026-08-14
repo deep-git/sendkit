@@ -16,18 +16,15 @@ export const slackSendMessageRequestSchema = z.object({
 
 export const slackSendMessageResponseSchema = z.object({
   ok: z.boolean(),
-  result: z
-    .object({
-      message_id: z.number().optional(),
-    })
-    .optional(),
-  description: z.string().optional(),
+  channel: z.string().optional(),
+  ts: z.string().optional(),
+  error: z.string().optional(),
 });
 
 export const slackMessageOutputSchema = z.object({
   ok: z.literal(true),
   channelId: z.string(),
-  messageId: z.number(),
+  messageId: z.string(),
 });
 
 export type SlackMessageInput = z.infer<typeof slackMessageInputSchema>;

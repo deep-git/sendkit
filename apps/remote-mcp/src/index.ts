@@ -36,20 +36,29 @@ function createServer(botToken: string) {
       inputSchema: slackMessageInputSchema.shape,
     },
     async (input) => {
-      const result = await sendSlackMessage({
-        ...input,
-        botToken,
-      });
+      try {
+        const result = await sendSlackMessage({
+          ...input,
+          botToken,
+        });
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: `Sent Slack message ${result.messageId} to channel ${result.channelId}`,
-          },
-        ],
-        structureContent: result,
-      };
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Sent Slack message ${result.messageId} to channel ${result.channelId}`,
+            },
+          ],
+          structuredContent: result,
+        };
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Slack message request failed";
+
+        return {
+          content: [{ type: "text", text: message }],
+          isError: true,
+        };
+      }
     },
   );
 
@@ -70,17 +79,23 @@ function unauthorizedMcpResponse(c: Context, botToken: string) {
   return c.json({ error: "Unauthorized" }, 401);
 }
 
+function getBotToken(c: Context) {
+  return decodeURIComponent(c.req.param("botToken") ?? "");
+}
+
 app.get("/.well-known/oauth-protected-resource/:botToken/mcp", async (c) => {
+  const botToken = getBotToken(c);
+
   return c.json(
     generateClerkProtectedResourceMetadata({
       publishableKey: clerkPublishableKey,
-      resourceUrl: new URL(`/${c.req.param("botToken")}/mcp`, c.req.url).toString(),
+      resourceUrl: new URL(`/${botToken}/mcp`, c.req.url).toString(),
     }),
   );
 });
 
 app.post("/:botToken/mcp", async (c) => {
-  const botToken = c.req.param("botToken");
+  const botToken = getBotToken(c);
   const authHeader = c.req.header("authorization");
 
   if (!authHeader?.startsWith("Bearer ")) {
@@ -125,8 +140,10 @@ export default {
   port,
   fetch: (req: Request) => {
     const url = new URL(req.url);
-    url.protocol = req.headers.get("x-forwarded-proto") ?? url.protocol;
-    url.host = req.headers.get("x-forwarded-host") ?? url.host;
+    const forwardedProto = req.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
+    const forwardedHost = req.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+    url.protocol = forwardedProto ?? url.protocol;
+    url.host = forwardedHost ?? url.host;
 
     return app.fetch(new Request(url, req));
   },
