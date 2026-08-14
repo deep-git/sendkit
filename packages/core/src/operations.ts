@@ -7,9 +7,7 @@ import {
   type SlackMessageOutput,
 } from "./schemas";
 
-export async function sendSlackMessage(
-  input: SlackMessageOptions,
-): Promise<SlackMessageOutput> {
+export async function sendSlackMessage(input: SlackMessageOptions): Promise<SlackMessageOutput> {
   const parsedInput = slackMessageOptionsSchema.parse(input);
 
   const requestBody = slackSendMessageRequestSchema.parse({

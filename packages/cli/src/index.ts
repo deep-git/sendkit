@@ -17,13 +17,9 @@ const cliConfigSchema = z.object({
 
 function writeSlackBotToken(token: string) {
   mkdirSync(dirname(configPath), { recursive: true });
-  writeFileSync(
-    configPath,
-    `${JSON.stringify({ slackBotToken: token }, null, 2)}\n`,
-    {
-      mode: 0o600,
-    },
-  );
+  writeFileSync(configPath, `${JSON.stringify({ slackBotToken: token }, null, 2)}\n`, {
+    mode: 0o600,
+  });
 }
 
 function getSlackBotToken() {
@@ -31,9 +27,7 @@ function getSlackBotToken() {
     throw new Error("Slack bot token is required. Run `sendkit init`.");
   }
 
-  const config = cliConfigSchema.parse(
-    JSON.parse(readFileSync(configPath, "utf8")),
-  );
+  const config = cliConfigSchema.parse(JSON.parse(readFileSync(configPath, "utf8")));
   const token = config.slackBotToken;
 
   if (!token) {

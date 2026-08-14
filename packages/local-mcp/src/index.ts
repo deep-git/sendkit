@@ -11,9 +11,7 @@ function getSlackBotToken() {
   const token = process.env.SLACK_BOT_TOKEN;
 
   if (!token) {
-    throw new Error(
-      "SLACK_BOT_TOKEN is required. Configue it in your MCP client environment.",
-    );
+    throw new Error("SLACK_BOT_TOKEN is required. Configue it in your MCP client environment.");
   }
 
   return token;
